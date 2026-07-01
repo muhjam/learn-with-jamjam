@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Dynamic OAuth Prompt Template - Learn with Jamjam</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --accent: #38bdf8;
+            --code-bg: #1e293b;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        header {
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0 0 15px 0;
+            background: linear-gradient(to right, var(--accent), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .instructions {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .instructions h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .instructions ol {
+            margin: 0 0 0 20px;
+            padding: 0;
+            color: #cbd5e1;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+        }
+
+        .prompt-container {
+            position: relative;
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .prompt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .prompt-title {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: #1d4ed8;
+            transform: scale(1.02);
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+        }
+
+        pre {
+            margin: 0;
+            padding: 25px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            color: #e2e8f0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">&larr; Kembali ke Beranda</a>
+
+        <header>
+            <h1>MCP Dynamic OAuth Prompt Template</h1>
+            <p class="description">Template master-prompt siap pakai untuk mengintegrasikan server MCP dengan support
+                Dynamic Client Registration (DCR) di proyek baru.</p>
+        </header>
+
+        <section class="instructions">
+            <h2>Cara Menggunakan:</h2>
+            <ol>
+                <li>Salin prompt di bawah ini dengan menekan tombol <strong>"Salin Prompt"</strong>.</li>
+                <li>Tempelkan ke dalam chat AI Assistant (Gemini, Claude, Cursor, dll.) di proyek baru Anda.</li>
+                <li>Lakukan kustomisasi pada bagian akhir prompt (sesuaikan framework, basis data, dan list tools yang
+                    Anda inginkan).</li>
+            </ol>
+        </section>
+
+        <div class="prompt-container">
+            <div class="prompt-header">
+                <span class="prompt-title">mcp-oauth-dcr-prompt-template.txt</span>
+                <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">Salin Prompt</button>
+            </div>
+            <pre><code id="promptText">Saya ingin membuat/mengintegrasikan sebuah server Model Context Protocol (MCP) berbasis HTTP (SSE/Streamable HTTP) ke dalam proyek ini. 
+
+Agar integrasi dengan host AI client (seperti ChatGPT) berjalan "seamless" (One-Link Solution) tanpa mewajibkan pengguna menginput Client ID & Client Secret secara manual pada form konfigurasi awal (Host akan mendaftarkan dirinya secara otomatis), kita harus mengimplementasikan standar **Dynamic Client Registration (DCR / RFC 7591)** dan **OAuth Discovery Metadata**.
+
+Tolong buatkan kode dan modul backend yang rapi dengan spesifikasi berikut:
+
+### 1. Endpoint Server MCP & Lazy Auth
+- Buat endpoint penanganan SSE (Server-Sent Events) di path `/api/mcp` untuk menerima command JSON-RPC dari client MCP.
+- Terapkan mekanisme **Lazy Auth**: client MCP dapat terhubung ke tool publik tanpa autentikasi di awal.
+- Bila client memanggil tool yang bersifat proteksi/pribadi (protected tools) tanpa menyertakan token Bearer valid di header `Authorization`, sistem harus menolak dan mengembalikan:
+  * Status HTTP: **401 Unauthorized**
+  * Header HTTP `WWW-Authenticate`: `Bearer realm="MCP Services", resource_metadata="[BASE_URL]/.well-known/oauth-protected-resource"`
+  * JSON body error RPC yang berisi metadata `login_url` menuju halaman login consent.
+- Saat client melakukan koneksi pertama kali (`GET` handshake), sertakan header HTTP:
+  `Link: <[BASE_URL]/.well-known/oauth-protected-resource>; rel="configuration"`
+
+### 2. File Metadata Discovery (.well-known)
+Sistem harus menyajikan dua endpoint publik di path standard berikut (sesuaikan mapping routing dengan framework Anda):
+- **`GET /.well-known/oauth-protected-resource`**
+  Mengembalikan JSON metadata resource:
+  ```json
+  {
+    "resource": "[BASE_URL]",
+    "authorization_servers": ["[BASE_URL]"],
+    "resource_name": "My MCP App"
+  }
+  ```
+- **`GET /.well-known/oauth-authorization-server`** (atau `/.well-known/openid-configuration`)
+  Mengembalikan metadata server otorisasi:
+  ```json
+  {
+    "issuer": "[BASE_URL]/",
+    "authorization_endpoint": "[BASE_URL]/oauth/authorize",
+    "token_endpoint": "[BASE_URL]/api/oauth/token",
+    "registration_endpoint": "[BASE_URL]/api/oauth/register",
+    "response_types_supported": ["code"],
+    "code_challenge_methods_supported": ["S256"],
+    "grant_types_supported": ["authorization_code", "refresh_token"],
+    "token_endpoint_auth_methods_supported": ["client_secret_post", "none"]
+  }
+  ```
+
+### 3. Dynamic Client Registration (DCR) Endpoint
+- **`POST /api/oauth/register`** (atau path registrasi lainnya sesuai rancangan)
+  Keleluasaan bagi AI client untuk mendaftarkan dirinya. Endpoint ini mendeteksi payload registrasi dari AI Client (seperti nama client dan redirect URIs) lalu mengembalikan respon JSON berisi Client ID yang valid:
+  ```json
+  {
+    "client_id": "mcp-default-client",
+    "client_name": "[NAMA_CLIENT_DARI_REQUEST]",
+    "redirect_uris": ["[REDIRECT_URIS_DARI_REQUEST]"],
+    "grant_types": ["authorization_code", "refresh_token"],
+    "response_types": ["code"],
+    "token_endpoint_auth_method": "none"
+  }
+  ```
+
+### 4. Alur Otorisasi & Pertukaran Token (OAuth Flow)
+- Buat halaman/route **Consent / Authorization Endpoint** (`/oauth/authorize`):
+  * Menerima parameter `client_id`, `redirect_uri`, dan `code_challenge`.
+  * Meminta pengguna login/konfirmasi akses. Keberhasilan login menghasilkan token otorisasi (`code`) berumur pendek.
+- Buat **Token Endpoint** (`/api/oauth/token`):
+  * Menerima penukaran token `code` menjadi Bearer access token dan refresh token.
+
+### 5. Konfigurasi Proyek Saat Ini (Kustomisasi)
+- **Framework yang Digunakan**: [Sebutkan framework Anda, misal: Next.js / ExpressJS / FastAPI]
+- **Database/Penyimpanan**: [Sebutkan database/ORM Anda, misal: Prisma PostgreSQL / SQLite / Redis]
+- **Daftar Tools**:
+  * Public (Tanpa login): [Definisikan tool publik Anda di sini]
+  * Protected (Harus login): [Definisikan tool terproteksi Anda di sini]
+
+Tolong buatkan implementasi modular yang bersih, adaptif untuk framework di atas, dan pastikan logic pendeteksian token bekerja dengan baik di middleware/handler resource server.</code></pre>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Learn with Jamjam. Dibuat dengan 💙 menggunakan Vibe Coding.</p>
+        </footer>
+    </div>
+
+    <script>
+        function copyPrompt() {
+            const promptText = document.getElementById("promptText").innerText;
+            const btn = document.getElementById("copyBtn");
+
+            navigator.clipboard.writeText(promptText).then(() => {
+                btn.innerText = "Tersalin!";
+                btn.classList.add("copied");
+
+                setTimeout(() => {
+                    btn.innerText = "Salin Prompt";
+                    btn.classList.remove("copied");
+                }, 2000);
+            }).catch(err => {
+                console.error("Gagal menyalin: ", err);
+            });
+        }
+    </script>
+</body>
+
+</html>

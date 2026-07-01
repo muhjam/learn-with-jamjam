@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn with Jamjam - Materi AI & Development</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --accent: #38bdf8;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--accent), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .category-section {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 25px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.4rem;
+            color: #fff;
+        }
+
+        .card p {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.2);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 20px;
+            align-self: flex-start;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 100px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .badge-new {
+            background: #ef4444;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            vertical-align: middle;
+            margin-left: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Learn with Jamjam</h1>
+            <p class="subtitle">Kumpulan materi belajar seputar AI, Vibe Coding, dan Modern Development.</p>
+        </header>
+
+        <main>
+            <!-- Category: MCP -->
+            <div class="category-section">
+                <div class="category-title">Model Context Protocol (MCP)</div>
+                <div class="grid">
+                    <a href="mcp/slide-01/index.html" class="card">
+                        <div>
+                            <h3>Introduction to MCP <span class="badge-new">New</span></h3>
+                            <p>Mengenal protokol masa depan untuk menghubungkan AI dengan dunia nyata.</p>
+                        </div>
+                        <span class="tag">Slide Presentasi</span>
+                    </a>
+                    <a href="mcp/prompt-template.html" class="card">
+                        <div>
+                            <h3>MCP Dynamic OAuth Prompt Template <span class="badge-new">New</span></h3>
+                            <p>Template master-prompt siap pakai untuk mengintegrasikan server MCP dengan support
+                                Dynamic Client Registration (DCR) di proyek baru.</p>
+                        </div>
+                        <span class="tag">Template Prompt</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Category: Vibe Coding -->
+            <div class="category-section">
+                <div class="category-title">Vibe Coding</div>
+                <div class="grid">
+                    <a href="vibe-coding/Devcode-AI-Talks/Materi - Vibe Code.pdf" class="card">
+                        <div>
+                            <h3>Vibe Code - Devcode AI Talks</h3>
+                            <p>Materi tentang cara membangun aplikasi dengan kecepatan pikiran menggunakan AI.</p>
+                        </div>
+                        <span class="tag">PDF</span>
+                    </a>
+                    <a href="vibe-coding/HMF-ITDA/Materi - Vibe Code HMFITDA.pdf" class="card">
+                        <div>
+                            <h3>Vibe Code - HMF ITDA</h3>
+                            <p>Eksplorasi Vibe Coding untuk mahasiswa ITDA.</p>
+                        </div>
+                        <span class="tag">PDF</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Category: Tools AI -->
+            <div class="category-section">
+                <div class="category-title">Tools AI</div>
+                <div class="grid">
+                    <a href="tools-ai/AI-Meetup/Materi - Nugas Cerdas Pake AI.pdf" class="card">
+                        <div>
+                            <h3>Nugas Cerdas Pake AI</h3>
+                            <p>Tips dan trik menggunakan AI untuk produktivitas tugas harian.</p>
+                        </div>
+                        <span class="tag">PDF</span>
+                    </a>
+                    <a href="tools-ai/AMCC-AMIKOM/Materi - Tools Cerdas Pake AI.pdf" class="card">
+                        <div>
+                            <h3>Tools Cerdas Pake AI</h3>
+                            <p>Workshop pengenalan berbagai tools AI untuk developer.</p>
+                        </div>
+                        <span class="tag">PDF</span>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Learn with Jamjam. Dibuat dengan 💙 menggunakan Vibe Coding.</p>
+        </footer>
+    </div>
+</body>
+
+</html>

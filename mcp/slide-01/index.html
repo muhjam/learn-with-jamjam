@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentasi Model Context Protocol (MCP)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="slides-container">
+        <!-- Slide 1: Judul -->
+        <section class="slide active" id="slide-1">
+            <div class="content">
+                <h1>Model Context Protocol (MCP)</h1>
+                <h3>Menghubungkan AI dengan Dunia Nyata</h3>
+                <p class="author">Oleh: [Nama Kamu]</p>
+                <div class="footer">Tekan Panah Kanan untuk Lanjut</div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Apa itu MCP? -->
+        <section class="slide" id="slide-2">
+            <div class="content">
+                <h2>Apa itu MCP?</h2>
+                <ul>
+                    <li><strong>Protokol Terbuka:</strong> Standar baru untuk menghubungkan model AI dengan data dan tools.</li>
+                    <li><strong>Universal:</strong> Satu cara untuk semua AI (Claude, ChatGPT, IDEs) berbicara dengan sistem luar.</li>
+                    <li><strong>Keamanan:</strong> Memberikan kontrol penuh kepada pengguna atas data apa yang bisa diakses AI.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 3: API vs MCP -->
+        <section class="slide" id="slide-3">
+            <h2>Tradisional API vs MCP</h2>
+            <div class="comparison-grid">
+                <div class="comp-card">
+                    <h3>Tradisional API</h3>
+                    <ul>
+                        <li>Dibuat untuk dikonsumsi Software/Aplikasi.</li>
+                        <li>Format data kaku (JSON/XML).</li>
+                        <li>AI butuh "Integrasi Khusus" per platform.</li>
+                        <li>AI tidak tahu cara pakai API tanpa dokumentasi manual.</li>
+                    </ul>
+                </div>
+                <div class="comp-card highlight-card">
+                    <h3>MCP</h3>
+                    <ul>
+                        <li>Dibuat untuk dikonsumsi AI (LLM).</li>
+                        <li>Self-describing (AI tahu fungsi & inputnya sendiri).</li>
+                        <li>Satu integrasi, bisa dipakai di semua AI Host.</li>
+                        <li>AI bisa eksplorasi data secara dinamis.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Sejarah MCP -->
+        <section class="slide" id="slide-4">
+            <div class="content">
+                <h2>Sejarah Singkat</h2>
+                <p>Dulu, setiap kali kita ingin AI mengakses data (misal: Google Drive), developer harus membuat integrasi khusus untuk setiap AI.</p>
+                <ul>
+                    <li><strong>November 2024:</strong> Anthropic merilis spesifikasi MCP pertama kali.</li>
+                    <li><strong>Tujuan:</strong> Mengakhiri era "integrasi kustom" yang melelahkan dan menciptakan ekosistem yang bisa digunakan bersama.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 5: Fungsi Utama -->
+        <section class="slide" id="slide-5">
+            <h2>Mengapa Kita Butuh MCP?</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Standarisasi</h3>
+                    <p>Developer cukup bikin satu Server MCP, bisa dipakai di mana saja.</p>
+                </div>
+                <div class="card">
+                    <h3>Konteks Real-time</h3>
+                    <p>AI bisa "melihat" data terbaru, bukan cuma data training lama.</p>
+                </div>
+                <div class="card">
+                    <h3>Eksekusi Aksi</h3>
+                    <p>Bukan cuma tanya jawab, AI bisa melakukan aksi (booking, kirim email, edit file).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Fundamental MCP -->
+        <section class="slide" id="slide-6">
+            <h2>Fundamental MCP</h2>
+            <div class="diagram">
+                <div class="box">Host (Claude/ChatGPT)</div>
+                <div class="arrow">↔ MCP Protocol ↔</div>
+                <div class="box">MCP Server (Database/API)</div>
+            </div>
+            <ul>
+                <li><strong>Resources:</strong> Data pasif (File, DB records).</li>
+                <li><strong>Tools:</strong> Fungsi aktif (POST API, kirim perintah).</li>
+                <li><strong>Prompts:</strong> Template instruksi untuk AI.</li>
+            </ul>
+        </section>
+
+        <!-- Slide 7: Transport Layer -->
+        <section class="slide" id="slide-7">
+            <h2>Bagaimana Mereka Berbicara?</h2>
+            <div class="transport-comparison">
+                <div class="transport-box">
+                    <h3>Stdio</h3>
+                    <div class="transport-diagram">
+                        <div class="node">AI Host (IDE/CLI)</div>
+                        <div class="conn">Local Pipe</div>
+                        <div class="node">MCP Server (Local)</div>
+                    </div>
+                    <p>Komunikasi via <code>Standard Input/Output</code>. Cocok untuk tools lokal.</p>
+                </div>
+                <div class="transport-box">
+                    <h3>HTTP + SSE</h3>
+                    <div class="transport-diagram">
+                        <div class="node">AI Host (Cloud)</div>
+                        <div class="conn">Internet (HTTP/SSE)</div>
+                        <div class="node">MCP Server (Remote)</div>
+                    </div>
+                    <p>Komunikasi via <code>Server-Sent Events</code>. Cocok untuk aplikasi web/cloud.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Use Cases -->
+        <section class="slide" id="slide-8">
+            <h2>Bisa Dipakai Apa Saja?</h2>
+            <div class="demo-list">
+                <div class="item">🎨 <strong>Design:</strong> Figma (Ambil komponen, update desain).</div>
+                <div class="item">📊 <strong>Productivity:</strong> Google Drive, Slack, Notion.</div>
+                <div class="item">💻 <strong>Development:</strong> GitHub, Database (Postgres/Prisma).</div>
+                <div class="item">🛠️ <strong>Custom:</strong> Travelan App (Booking Hotel via AI).</div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Persiapan & Instalasi -->
+        <section class="slide" id="slide-9">
+            <h2>Persiapan & Instalasi</h2>
+            <div class="code-container">
+                <div class="code-block full-width">
+                    <pre><code># 1. Install MCP SDK
+npm install @modelcontextprotocol/sdk
+
+# 2. (Opsional) Install Inspector untuk debugging
+npm install -g @modelcontextprotocol/inspector</code></pre>
+                    <p><strong>Requirements:</strong> Node.js v18+ atau Python 3.10+.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Membangun MCP Sendiri -->
+        <section class="slide" id="slide-10">
+            <h2>Build Your Own MCP (Server Setup)</h2>
+            <div class="code-container">
+                <div class="code-block">
+                    <pre><code>// 1. Inisialisasi Server
+const server = new Server({
+  name: "my-mcp-server",
+  version: "1.0.0"
+}, {
+  capabilities: { tools: {} }
+});
+
+// 2. Daftarkan Tool
+server.setRequestHandler(
+  ListToolsRequestSchema, 
+  async () => ({
+    tools: [/* toolDefinitions */]
+  })
+);</code></pre>
+                    <p><strong>Server:</strong> Menentukan identitas dan kemampuan server.</p>
+                </div>
+                <div class="code-block">
+                    <pre><code>// 3. Handle Eksekusi
+server.setRequestHandler(
+  CallToolRequestSchema, 
+  async (request) => {
+    const { name, arguments: args } = request.params;
+    return await handleToolCall(name, args);
+  }
+);
+
+// 4. Connect Transport
+const transport = new StdioServerTransport();
+await server.connect(transport);</code></pre>
+                    <p><strong>Execution:</strong> Menghubungkan request AI ke fungsi asli kita.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Testing & Debugging -->
+        <section class="slide" id="slide-11">
+            <h2>Testing & Debugging</h2>
+            <div class="code-container">
+                <div class="code-block full-width">
+                    <pre><code># Test via CLI (Stdio)
+npx @modelcontextprotocol/inspector node dist/index.js
+
+# Test via ChatGPT/Claude
+# 1. Deploy ke URL (misal: Vercel)
+# 2. Masukkan URL SSE ke konfigurasi Custom GPT / Claude Desktop</code></pre>
+                    <p>Gunakan <strong>MCP Inspector</strong> untuk mencoba tool secara manual sebelum dihubungkan ke AI.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 12: OAuth & Security -->
+        <section class="slide" id="slide-12">
+            <h2>OAuth & Security (Protected Tools)</h2>
+            <div class="diagram">
+                <div class="box">AI Call Tool</div>
+                <div class="arrow">→ 401 Unauthorized + Login URL →</div>
+                <div class="box">User Login & Authorize</div>
+            </div>
+            <div class="code-container">
+                <div class="code-block">
+                    <pre><code>// Server merespons 401 jika butuh login
+return new NextResponse(JSON.stringify({
+  jsonrpc: "2.0",
+  error: {
+    code: 401,
+    message: "Unauthorized",
+    data: { 
+      login_url: "https://myapp.com/oauth" 
+    }
+  }
+}), { status: 401 });</code></pre>
+                    <p><strong>Flow:</strong> AI akan otomatis menampilkan tombol "Login" kepada user saat menerima error 401 ini.</p>
+                </div>
+                <div class="code-block">
+                    <pre><code>// Verifikasi Token di Server
+const authHeader = req.headers.get("authorization");
+const userId = await getUserIdFromToken(authHeader);
+
+if (isProtected(toolName) && !userId) {
+  return throw401();
+}</code></pre>
+                    <p><strong>Security:</strong> Memastikan data sensitif (seperti booking) hanya bisa diakses setelah user login.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13: Deep Dive: GPT to App Connection -->
+        <section class="slide" id="slide-13">
+            <h2>Deep Dive: Bagaimana GPT "Login" ke App Kita?</h2>
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="step-icon">🤖</div>
+                    <div class="step-text"><strong>1. AI Host (GPT)</strong><br>Menyimpan Client ID & Secret kita.</div>
+                </div>
+                <div class="flow-arrow">➜</div>
+                <div class="flow-step">
+                    <div class="step-icon">🔐</div>
+                    <div class="step-text"><strong>2. Token Exchange</strong><br>GPT menukar "Auth Code" dari user menjadi "Access Token".</div>
+                </div>
+                <div class="flow-arrow">➜</div>
+                <div class="flow-step">
+                    <div class="step-icon">💾</div>
+                    <div class="step-text"><strong>3. Secure Storage</strong><br>Token disimpan di database terenkripsi milik OpenAI/Anthropic.</div>
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-box">
+                    <h4>Di Mana Token Disimpan?</h4>
+                    <p>Bukan di browser user, tapi di <strong>Server AI Host</strong>. User tidak bisa melihat token ini secara langsung.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Bagaimana GPT Menggunakannya?</h4>
+                    <p>Setiap kali GPT memanggil tool, ia menyisipkan token di <code>Header Authorization</code> secara otomatis.</p>
+                </div>
+                <div class="info-box">
+                    <h4>Kapan Token Expired?</h4>
+                    <p>GPT akan menggunakan <code>refresh_token</code> untuk meminta token baru tanpa mengganggu user (Background Refresh).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 14: Demo MCP -->
+        <section class="slide" id="slide-14">
+            <div class="content highlight">
+                <h2>Demo MCP</h2>
+                <p>Mari kita eksplorasi kekuatan MCP secara langsung:</p>
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <h4>🎨 Canva MCP + ChatGPT</h4>
+                        <p>Generate desain banner otomatis lewat chat.</p>
+                    </div>
+                    <div class="demo-card">
+                        <h4>📐 Figma MCP + Vibe Coding</h4>
+                        <p>Ambil aset desain dan langsung jadi kode.</p>
+                    </div>
+                    <div class="demo-card">
+                        <h4>🏨 Custom MCP + ChatGPT</h4>
+                        <p>Booking hotel real-time di <strong>Travelan App</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 15: Penutup -->
+        <section class="slide" id="slide-15">
+            <div class="content">
+                <h1>Terima Kasih!</h1>
+                <h3>Masa Depan AI adalah Integrasi.</h3>
+                <p>Ada Pertanyaan?</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn">← Prev</button>
+        <span id="slideNum">1 / 15</span>
+        <button id="nextBtn">Next →</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
